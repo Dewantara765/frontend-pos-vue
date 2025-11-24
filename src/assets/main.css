@@ -3,3 +3,47 @@
 body {
   @apply bg-gray-100 text-gray-900;
 }
+
+.container {
+  @apply mx-auto p-4;
+}
+
+.title {
+  @apply text-2xl font-bold mb-4;
+}
+
+.create-button {
+  @apply bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4;
+}
+
+.card {
+  @apply bg-white shadow-md rounded p-4 mb-4;
+}
+
+.edit-button {
+  @apply bg-amber-300  px-4 py-2 rounded hover:bg-yellow-600;
+}
+
+.delete-button {
+  @apply bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mb-4;
+}
+
+.view-button {
+  @apply bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4;
+}
+
+.card-title{
+  @apply mb-4 font-bold text-center text-xl;
+}
+
+.left-table-header {
+  @apply border-x-2 p-2 border-y-2;
+}
+
+.mid-table-header {
+  @apply border-r-2 p-2 border-y-2;
+}
+
+.right-table-header {
+  @apply border-y-2 p-2 border-r-2;
+}
