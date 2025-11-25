@@ -1,35 +1,33 @@
 <script setup lang="ts">
 
 defineProps<{
-  modelValue: number | null;
+  modelValue: string;
   name: string;
-  placeholder: string;
   text: string;
-  readonly?: boolean
 }>();
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: number): void;
+  (e: 'update:modelValue', value: string): void;
 }>();
 
 const updateValue = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  emit('update:modelValue', Number(target.value));
+  emit('update:modelValue', target.value);
 };
+
+
 </script>
 
 <template>
- <div>
+  <div>
       <label :for="name" class="text-end inline-block w-40 p-2">{{ text }}</label>
       <input
-        type="number"
+        type="date"
         :name="name"
         :id="name"
-        :placeholder="placeholder"
         class="bg-gray-200 p-1"
         :value="modelValue"
         @input="updateValue"
-        min="0"
       />
-    </div>
+  </div>
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import api from '@/services/api';
 import { ref, onMounted } from 'vue';
+import { formatPrice } from '@/composables/formatPrice';
 
 interface Product {
   id_product: number;
@@ -52,11 +53,11 @@ const deleteProduct = async(id: number) => {
       <div v-for="product in products" :key="product.id_product" class="border p-4 w-60">
         <img :src="product.image" :alt="product.name" class="w-full h-40 object-contain mb-2">
         <h2 class="font-bold text-lg">{{ product.name }}</h2>
-        <p>Price: {{ product.price }}</p>
-        <p>Stock: {{ product.stock }}</p>
+        <p>Harga: {{ formatPrice(product.price) }} </p>
+        <p>Stok: {{ product.stock }}</p>
         <div class="mt-2 gap-2 flex">
-          <button class="edit-button"><router-link :to="`/product/${product.id_product}/edit`">Edit</router-link></button>
-          <button @click="deleteProduct(product.id_product)" class="delete-button">Delete</button>
+          <button class="edit-button"><router-link :to="`/product/${product.id_product}/edit`">Ubah</router-link></button>
+          <button @click="deleteProduct(product.id_product)" class="delete-button">Hapus</button>
       </div>
       <div v-if="products.length === 0">Tidak ada produk...</div>
     </div>

@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, provide } from 'vue';
 import api from '@/services/api';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 interface User {
-  id: number;
+  id_user: number;
   name: string;
   email: string;
   // Tambahkan properti lain sesuai dengan struktur data user Anda
 }
 
 const user = ref<User[]>([])
+provide('user', user)
 const error = ref('')
 const token = ref(localStorage.getItem('token'))
 const router = useRouter()
@@ -91,9 +92,10 @@ const logout = async () => {
   <div class="grid grid-cols-[1fr_10fr] gap-3">
     <div class="bg-gray-700 p-2 text-white h-screen">
       <div @click="changeActiveTab('home')" class="cursor-pointer" :class="activeTab === 'home' ? 'bg-rose-500' : ''"><router-link to="/">Home</router-link></div>
-      <div @click="changeActiveTab('category')" class="cursor-pointer" :class="activeTab === 'category' ? 'bg-rose-500' : ''"><router-link to="/category">Category</router-link></div>
-      <div @click="changeActiveTab('product')" class="cursor-pointer" :class="activeTab === 'product' ? 'bg-rose-500' : ''"><router-link to="/product">Product</router-link></div>
-      <div @click="changeActiveTab('customer')" class="cursor-pointer" :class="activeTab === 'customer' ? 'bg-rose-500' : ''"><router-link to="/customer">Customer</router-link></div>
+      <div @click="changeActiveTab('category')" class="cursor-pointer" :class="activeTab === 'category' ? 'bg-rose-500' : ''"><router-link to="/category">Kategori</router-link></div>
+      <div @click="changeActiveTab('product')" class="cursor-pointer" :class="activeTab === 'product' ? 'bg-rose-500' : ''"><router-link to="/product">Produk</router-link></div>
+      <div @click="changeActiveTab('customer')" class="cursor-pointer" :class="activeTab === 'customer' ? 'bg-rose-500' : ''"><router-link to="/customer">Pembeli</router-link></div>
+      <div @click="changeActiveTab('transaction')" class="cursor-pointer" :class="activeTab === 'transaction' ? 'bg-rose-500' : ''"><router-link to="/transaction"> Transaksi</router-link></div>
       <hr>
         <div class="p-2">{{ user.name }}</div>
         <button @click="logout" class="delete-button">Logout</button>

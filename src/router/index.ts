@@ -58,7 +58,7 @@ const router = createRouter({
           component: () => import('../views/Category/IndexView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Category'
+            title : 'Kategori'
           },
         },
         {
@@ -67,7 +67,7 @@ const router = createRouter({
           component: () => import('../views/Category/CreateView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Create Category'
+            title : 'Buat Kategori'
           },
         },
         {
@@ -76,7 +76,7 @@ const router = createRouter({
           component: () => import('../views/Category/EditView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Edit Category'
+            title : 'Ubah Kategori'
           },
         },
         {
@@ -85,7 +85,7 @@ const router = createRouter({
           component: () => import('../views/Category/ProductsView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Category Products'
+            title : 'Produk dalam Kategori'
           },
         },
       ],
@@ -101,7 +101,7 @@ const router = createRouter({
           component: () => import('../views/Product/IndexView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Product'
+            title : 'Produk'
           },
         },
         {
@@ -110,7 +110,7 @@ const router = createRouter({
           component: () => import('../views/Product/CreateView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Create Product'
+            title : 'Buat Produk'
           },
         },
         {
@@ -119,7 +119,7 @@ const router = createRouter({
           component: () => import('../views/Product/EditView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Edit Product'
+            title : 'Ubah Produk'
           },
         }
       ],
@@ -134,7 +134,7 @@ const router = createRouter({
           component: () => import('../views/Customer/IndexView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Customer'
+            title : 'Pembeli'
           },
         },
         {
@@ -143,7 +143,7 @@ const router = createRouter({
           component: () => import('../views/Customer/CreateView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Create Customer'
+            title : 'Buat Data Pembeli'
           },
         },
         {
@@ -152,7 +152,7 @@ const router = createRouter({
           component: () => import('../views/Customer/ShowView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'View Customer'
+            title : 'Lihat Data Pembeli'
           },
         },
 
@@ -162,12 +162,54 @@ const router = createRouter({
           component: () => import('../views/Customer/EditView.vue'),
           meta: {
             requiresAuth: true,
-            title : 'Edit Customer'
+            title : 'Ubah Data Pembeli'
           },
         }
       ],
     },
+    {
+      path: '/transaction',
+      component: DefaultLayout,
+      children: [
+        {
+          path: '',
+          name: 'Transaction',
+          component: () => import('../views/Transaction/IndexView.vue'),
+          meta: {
+            requiresAuth: true,
+            title : 'Transaksi'
+          },
+        },
+        {
+          path: ':id',
+          name: 'TransactionView',
+          component: () => import('../views/Transaction/ShowView.vue'),
+          meta: {
+            requiresAuth: true,
+            title : 'Lihat Transaksi'
+          },
+        },
+        {
+          path: ':id/add',
+          name: 'TransactionAddItem',
+          component: () => import('../views/Transaction/AddItemView.vue'),
+          meta: {
+            requiresAuth: true,
+            title : 'Tambah Item Transaksi'
+          },
+        },
+        {
+          path: 'create',
+          name: 'TransactionCreate',
+          component: () => import('../views/Transaction/CreateView.vue'),
+          meta: {
+            requiresAuth: true,
+            title : 'Buat Data Transaksi'
+          },
+        }
 
+      ],
+    }
 
 
   ],

@@ -8,7 +8,7 @@ import NumberInput from '../components/NumberInput.vue';
 
 const name = ref<string>('');
 const image = ref<File | null>(null);
-const price = ref<number | null>(null);
+const price = ref<string | null>(null);
 const stock = ref<number | null>(null);
 const categories = ref<Category[]>([]);
 const category = ref<number | null>(null);
@@ -36,6 +36,29 @@ onMounted(async() => {
   }
 })
 
+const formatInput = (angka: string, prefix: string) => {
+  const numberString = angka.replace(/[^,\d]/g, '').toString();
+  const split = numberString.split(',');
+  const sisa = split[0].length % 3;
+  let rupiah = split[0].substr(0, sisa);
+  const ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+  if (ribuan) {
+    const separator = sisa ? '.' : '';
+    rupiah += separator + ribuan.join('.');
+  }
+
+  rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+  return prefix + rupiah;
+
+}
+
+const formatPrice = (value: string) => {
+  const stringWithoutPoints = value.replace(/\./g, '');
+  const numberValue = parseFloat(stringWithoutPoints);
+  return numberValue.toFixed(2);
+}
+
 const submit = async() => {
   const formData = new FormData();
   formData.append('name', name.value);
@@ -43,7 +66,7 @@ const submit = async() => {
     formData.append('image', image.value);
   }
   if (price.value !== null) {
-    formData.append('price', price.value.toString());
+    formData.append('price', formatPrice(price.value));
   }
   if (stock.value !== null) {
     formData.append('stock', stock.value.toString());
@@ -88,11 +111,12 @@ const submit = async() => {
 
 
 
-    <NumberInput
+    <TextInput
       v-model="price"
       name="price"
       placeholder="Harga Produk"
       text="Harga Produk"
+      @keyup="price = formatInput(price, '');"
     />
     <div v-if="validationErrors.price" class="text-red-500 text-sm">{{ validationErrors.price }}</div>
 

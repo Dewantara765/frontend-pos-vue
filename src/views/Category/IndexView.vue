@@ -44,8 +44,8 @@ const deleteCategory = async(id: number) => {
 
 <template>
   <div class="container">
-    <p class="title">Category Index</p>
-     <button class="create-button"><router-link to="/category/create">Create</router-link> Category</button>
+    <p class="title">Indeks Kategori</p>
+    <button class="create-button"><router-link to="/category/create">Tambah Kategori</router-link></button>
       <div class="flex gap-4">
           <div v-for="category in categories" :key="category.id_category" class="card">
             <div class="card-title">{{ category.name }}</div>
